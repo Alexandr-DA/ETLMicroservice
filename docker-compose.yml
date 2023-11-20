@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  stg_service:
+    build:
+      context: ./service_stg
+      network: host
+    container_name: stg_service_container
+    extra_hosts:
+      - "rc1a-phml9v7algis3bof.mdb.yandexcloud.net:84.201.134.185"
+
+    environment:
+      FLASK_APP: ${STG_SERVICE_APP_NAME:-stg_service}
+      DEBUG: ${STG_SERVICE_DEBUG:-True}
+
+      KAFKA_HOST: ${KAFKA_HOST}
+      KAFKA_PORT: ${KAFKA_PORT}
+      KAFKA_CONSUMER_USERNAME: ${KAFKA_CONSUMER_USERNAME}
+      KAFKA_CONSUMER_PASSWORD: ${KAFKA_CONSUMER_PASSWORD}
+      KAFKA_CONSUMER_GROUP: ${KAFKA_CONSUMER_GROUP}
+      KAFKA_SOURCE_TOPIC: ${KAFKA_SOURCE_TOPIC}
+      KAFKA_DESTINATION_TOPIC: ${KAFKA_STG_SERVICE_ORDERS_TOPIC}
+
+      PG_WAREHOUSE_HOST: ${PG_WAREHOUSE_HOST}
+      PG_WAREHOUSE_PORT: ${PG_WAREHOUSE_PORT}
+      PG_WAREHOUSE_DBNAME: ${PG_WAREHOUSE_DBNAME}
+      PG_WAREHOUSE_USER: ${PG_WAREHOUSE_USER}
+      PG_WAREHOUSE_PASSWORD: ${PG_WAREHOUSE_PASSWORD}
+
+      REDIS_HOST: ${REDIS_HOST}
+      REDIS_PORT: ${REDIS_PORT}
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      
+    network_mode: "bridge"
+    ports:
+      - "5011:5000"
+    restart: unless-stopped
