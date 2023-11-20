@@ -7,9 +7,9 @@ replicaCount: 1
 image:
   # Link to your container registry. You will launch it in Yandex Cloud.
   repository: cr.yandex/crpgtflfhr7osd5rl7gv/stg_service
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2022-11-12-r2"
+  tag: "latest"
 
 containerPort: "5000"
 

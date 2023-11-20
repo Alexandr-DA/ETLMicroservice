@@ -6,27 +6,27 @@ replicaCount: 1
 
 image:
   # Link to your container registry. You will launch it in Yandex Cloud.
-  repository: cr.yandex/crp3n3kcgk3kb8d2oq7e/dds_service
-  pullPolicy: IfNotPresent
+  repository: cr.yandex/crpgtflfhr7osd5rl7gv/dds
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "v2023-04-12-r1"
+  tag: "latest"
 
 containerPort: 5000
 
 config:
-  KAFKA_HOST: 'rc1a-2slpcgv1j2fn4t99.mdb.yandexcloud.net'
+  KAFKA_HOST: 'rc1a-phml9v7algis3bof.mdb.yandexcloud.net'
   KAFKA_PORT: '9091'
   KAFKA_CONSUMER_USERNAME: 'producer_consumer'
-  KAFKA_CONSUMER_PASSWORD: 'password'
-  KAFKA_CONSUMER_GROUP: 'main-consumer-group'
-  KAFKA_SOURCE_TOPIC: 'stg-service-orders'
-  KAFKA_DDS_SERVICE_ORDERS_TOPIC: 'dds-service-orders'
+  KAFKA_CONSUMER_PASSWORD: 'Das714239'
+  KAFKA_CONSUMER_GROUP: 'demo'
+  KAFKA_SOURCE_TOPIC: "stg-service-orders"
+  KAFKA_DESTINATION_TOPIC: "stg-service-orders"
 
-  PG_WAREHOUSE_HOST: 'rc1b-0msvqf7gg4v8rcel.mdb.yandexcloud.net'
+  PG_WAREHOUSE_HOST: 'rc1b-4nsueuw15pcp4amf.mdb.yandexcloud.net'
   PG_WAREHOUSE_PORT: '6432'
   PG_WAREHOUSE_DBNAME: 'sprint9dwh'
   PG_WAREHOUSE_USER: 'db_user'
-  PG_WAREHOUSE_PASSWORD: 'password'
+  PG_WAREHOUSE_PASSWORD: 'Das714239'
 
 imagePullSecrets: []
 nameOverride: ""
